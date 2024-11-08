@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINGLES Quiz</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+    <h1>SINGLES Quiz</h1>
+    <div class="input-container">
+        <label for="tableCount">Number of Tables:</label>
+        <div class="spin-button">
+            <button onclick="decrementTableCount()">-</button>
+            <input type="number" id="tableCount" value="15" min="1" readonly>
+            <button onclick="incrementTableCount()">+</button>
+        </div>
+        <label for="personName">Enter Person’s Name:</label>
+        <input type="text" id="personName" placeholder="Name">
+        <button class="add-person" onclick="addAndAssignPerson()">Add & Assign Person</button>
+    </div>
+    <div class="table-container" id="tableContainer"></div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
