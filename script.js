@@ -125,4 +125,51 @@ function renderTables() {
     });
 }
 
+
+function renderTables() {
+    const tableContainer = document.getElementById('tableContainer');
+    tableContainer.innerHTML = '';
+
+    tables.forEach((table, i) => {
+        const tableEl = document.createElement('div');
+        tableEl.className = 'table';
+
+        if (table.people.length >= maxPeoplePerTable) {
+            tableEl.classList.add('full'); // Apply the "full" class if table is at max capacity
+        }
+
+        const tableHeader = document.createElement('div');
+        tableHeader.className = 'table-header';
+
+        const tableName = document.createElement('strong');
+        tableName.textContent = table.name;
+        tableHeader.appendChild(tableName);
+
+        const renameButton = document.createElement('button');
+        renameButton.className = 'rename-btn';
+        renameButton.onclick = () => renameTable(i);
+        renameButton.innerHTML = `<img src="https://img.icons8.com/material-outlined/24/1E3A5F/pencil.png" alt="Rename">`;
+        tableHeader.appendChild(renameButton);
+
+        tableEl.appendChild(tableHeader);
+
+        table.people.forEach((person, personIndex) => {
+            const personEl = document.createElement('div');
+            personEl.className = 'person-item';
+            personEl.textContent = person;
+
+            const removeButton = document.createElement('button');
+            removeButton.className = 'remove-btn';
+            removeButton.textContent = "X";
+            removeButton.onclick = () => removePerson(i, personIndex);
+
+            personEl.appendChild(removeButton);
+            tableEl.appendChild(personEl);
+        });
+
+        tableContainer.appendChild(tableEl);
+    });
+}
+
+// Call the setup function at the bottom if needed
 setupTables(15);
