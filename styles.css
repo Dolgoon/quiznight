@@ -166,3 +166,9 @@ button.add-person:hover {
     cursor: pointer;
     margin-left: 10px;
 }
+
+/* Full table styling */
+.table.full {
+    background-color: #d3d3d3; /* Inactive grey color */
+    color: #6c757d; /* Darker grey text to match the inactive look */
+}
