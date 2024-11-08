@@ -162,6 +162,19 @@
             border-radius: 5px;
             margin: 5px 0;
             font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #465fb1; /* Red color for "X" button */
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -182,6 +195,14 @@
 
     <script>
         let tables = [];
+
+        // Event listener to trigger Add button on Enter key press
+        document.getElementById('personName').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevents form submission if in a form
+                addAndAssignPerson(); // Trigger the add person function
+            }
+        });
 
         function setupTables(newTableCount) {
             // Preserve existing people in tables if the table count changes
@@ -227,6 +248,11 @@
             }
         }
 
+        function removePerson(tableIndex, personIndex) {
+            tables[tableIndex].people.splice(personIndex, 1);
+            renderTables();
+        }
+
         function renameTable(index) {
             const newName = prompt("Enter new table name:");
             if (newName) {
@@ -258,10 +284,17 @@
 
                 tableEl.appendChild(tableHeader);
 
-                table.people.forEach(person => {
+                table.people.forEach((person, personIndex) => {
                     const personEl = document.createElement('div');
                     personEl.className = 'person-item';
                     personEl.textContent = person;
+
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'remove-btn';
+                    removeButton.textContent = "X";
+                    removeButton.onclick = () => removePerson(i, personIndex);
+                    
+                    personEl.appendChild(removeButton);
                     tableEl.appendChild(personEl);
                 });
 
