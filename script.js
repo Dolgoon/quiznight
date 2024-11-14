@@ -1,12 +1,35 @@
 let tables = [];
 const maxPeoplePerTable = 6;
+const adminPassword = "anungoo7"; // Replace with your chosen password
+let isLoggedIn = false;
 
 document.getElementById('personName').addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
-        addAndAssignPerson();
+        if (isLoggedIn) {
+            addAndAssignPerson();
+        }
     }
 });
+
+// Display login form
+function showLoginForm() {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('login-btn').style.display = 'none';
+}
+
+// Login function
+function login() {
+    const enteredPassword = document.getElementById('password').value;
+    if (enteredPassword === adminPassword) {
+        isLoggedIn = true;
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('input-container').style.display = 'block';
+        alert("Login successful. You can now add or remove people.");
+    } else {
+        alert("Incorrect password. Please try again.");
+    }
+}
 
 function setupTables(newTableCount) {
     let allPeople = tables.flatMap(table => table.people);
@@ -38,6 +61,11 @@ function decrementTableCount() {
 }
 
 function addAndAssignPerson() {
+    if (!isLoggedIn) {
+        alert("Please log in to add people.");
+        return;
+    }
+
     const name = document.getElementById('personName').value.trim();
     const totalPeople = tables.reduce((acc, table) => acc + table.people.length, 0);
 
@@ -72,11 +100,19 @@ function addAndAssignPerson() {
 }
 
 function removePerson(tableIndex, personIndex) {
+    if (!isLoggedIn) {
+        alert("Please log in to remove people.");
+        return;
+    }
     tables[tableIndex].people.splice(personIndex, 1);
     renderTables();
 }
 
 function renameTable(index) {
+    if (!isLoggedIn) {
+        alert("Please log in to rename tables.");
+        return;
+    }
     const newName = prompt("Enter new table name:");
     if (newName) {
         tables[index].name = newName;
@@ -92,50 +128,8 @@ function renderTables() {
         const tableEl = document.createElement('div');
         tableEl.className = 'table';
 
-        const tableHeader = document.createElement('div');
-        tableHeader.className = 'table-header';
-
-        const tableName = document.createElement('strong');
-        tableName.textContent = table.name;
-        tableHeader.appendChild(tableName);
-
-        const renameButton = document.createElement('button');
-        renameButton.className = 'rename-btn';
-        renameButton.onclick = () => renameTable(i);
-        renameButton.innerHTML = `<img src="https://img.icons8.com/material-outlined/24/1E3A5F/pencil.png" alt="Rename">`;
-        tableHeader.appendChild(renameButton);
-
-        tableEl.appendChild(tableHeader);
-
-        table.people.forEach((person, personIndex) => {
-            const personEl = document.createElement('div');
-            personEl.className = 'person-item';
-            personEl.textContent = person;
-
-            const removeButton = document.createElement('button');
-            removeButton.className = 'remove-btn';
-            removeButton.textContent = "X";
-            removeButton.onclick = () => removePerson(i, personIndex);
-
-            personEl.appendChild(removeButton);
-            tableEl.appendChild(personEl);
-        });
-
-        tableContainer.appendChild(tableEl);
-    });
-}
-
-
-function renderTables() {
-    const tableContainer = document.getElementById('tableContainer');
-    tableContainer.innerHTML = '';
-
-    tables.forEach((table, i) => {
-        const tableEl = document.createElement('div');
-        tableEl.className = 'table';
-
         if (table.people.length >= maxPeoplePerTable) {
-            tableEl.classList.add('full'); // Apply the "full" class if table is at max capacity
+            tableEl.classList.add('full');
         }
 
         const tableHeader = document.createElement('div');
@@ -171,5 +165,4 @@ function renderTables() {
     });
 }
 
-// Call the setup function at the bottom if needed
 setupTables(15);
