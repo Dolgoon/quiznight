@@ -8,7 +8,22 @@
 </head>
 <body>
     <h1>SINGLES Quiz</h1>
-    <div class="input-container">
+    
+    <!-- Login Section -->
+    <div id="login-section">
+        <button onclick="showLoginForm()" id="login-btn" class="red-button">Login</button>
+    </div>
+
+    <!-- Login Form (Initially Hidden) -->
+    <div id="login-form" style="display: none;">
+        <div class="login-inline">
+            <input type="password" id="password" placeholder="Enter password">
+            <button onclick="login()" class="small-red-button">Submit</button>
+        </div>
+    </div>
+
+    <!-- Input Container: Only Visible if Logged In -->
+    <div class="input-container" id="input-container" style="display: none;">
         <label for="tableCount">Number of Tables:</label>
         <div class="spin-button">
             <button onclick="decrementTableCount()">-</button>
@@ -17,11 +32,13 @@
         </div>
         <label for="personName">Enter Person’s Name:</label>
         <input type="text" id="personName" placeholder="Name">
-        <button class="add-person" onclick="addAndAssignPerson()">Add & Assign Person</button>
+        <button class="red-button" onclick="addAndAssignPerson()">Add & Assign Person</button>
     </div>
+
+    <!-- Table Container for Viewing -->
     <div class="table-container" id="tableContainer"></div>
 
-    <!-- Link to external JavaScript file -->
+    <!-- Link to external JavaScript file at the bottom -->
     <script src="script.js"></script>
 </body>
 </html>
