@@ -1,5 +1,5 @@
 let tables = [];
-const maxPeoplePerTable = 4;
+const maxPeoplePerTable = 6;
 const adminPassword = "anungoo7"; // Replace with your chosen password
 let isLoggedIn = false;
 
@@ -175,4 +175,5 @@ document.getElementById('personName').addEventListener('keypress', function(even
 
 // Initialize with a default table setup
 setupTables(15);
+
 
