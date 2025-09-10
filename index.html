@@ -1,55 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SINGLES Quiz</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+  <meta charset="UTF-8">
+  <title>SINGLES Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>SINGLES Quiz</h1>
-    
-    <!-- Login Section -->
-    <div id="login-section">
-        <button onclick="showLoginForm()" id="login-btn" class="red-button">Login</button>
-    </div>
+  <h1>SINGLES Quiz</h1>
 
-    <!-- Login Form (Initially Hidden) -->
-    <div id="login-form" style="display: none;">
-        <div class="login-inline">
-            <input type="password" id="password" placeholder="Enter password">
-            <button onclick="login()" class="small-red-button">Submit</button>
-        </div>
-    </div>
+  <button id="login-btn" class="red-btn" onclick="showLoginForm()">Login</button>
 
-    <!-- Input Container: Only Visible if Logged In -->
-    <div class="input-container" id="input-container" style="display: none;">
-        <label for="tableCount">Number of Tables:</label>
-        <div class="spin-button">
-            <button onclick="decrementTableCount()">-</button>
-            <input type="number" id="tableCount" value="15" min="1" readonly>
-            <button onclick="incrementTableCount()">+</button>
-        </div>
-        <label for="personName">Enter Person’s Name:</label>
-        <input type="text" id="personName" placeholder="Name">
-        <button class="red-button" onclick="addAndAssignPerson()">Add & Assign Person</button>
-    </div>
-
-    <div class="control-group">
-  <label for="maxParticipantsInput">Max per Table:</label>
-  <div class="spin-control">
-    <button onclick="changeMaxParticipants(-1)">-</button>
-    <input type="text" id="maxParticipantsInput" value="6" readonly>
-    <button onclick="changeMaxParticipants(1)">+</button>
+  <div id="login-form" style="display:none;">
+    <input type="password" id="password" placeholder="Enter password">
+    <button class="red-btn small-btn" onclick="login()">Submit</button>
   </div>
-</div>
 
+  <div id="input-container" style="display:none;">
+    <div class="control-section">
+      <label>Number of Tables:</label>
+      <div class="number-control">
+        <button onclick="decrementTableCount()">-</button>
+        <input type="text" id="tableCount" value="15" readonly>
+        <button onclick="incrementTableCount()">+</button>
+      </div>
+    </div>
 
-    <!-- Table Container for Viewing -->
-    <div class="table-container" id="tableContainer"></div>
+    <div class="control-section">
+      <label>Max People Per Table:</label>
+      <div class="number-control">
+        <button onclick="changeMaxParticipants(-1)">-</button>
+        <input type="text" id="maxParticipantsInput" value="6" readonly>
+        <button onclick="changeMaxParticipants(1)">+</button>
+      </div>
+    </div>
 
-    <!-- Link to external JavaScript file at the bottom -->
-    <script src="script.js"></script>
+    <div class="person-entry">
+      <input type="text" id="personName" placeholder="Enter name">
+      <button class="red-btn" onclick="addAndAssignPerson()">Add & Assign Person</button>
+    </div>
+  </div>
+
+  <div id="tableContainer"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
