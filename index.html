@@ -35,6 +35,16 @@
         <button class="red-button" onclick="addAndAssignPerson()">Add & Assign Person</button>
     </div>
 
+    <div class="control-group">
+  <label for="maxParticipantsInput">Max per Table:</label>
+  <div class="spin-control">
+    <button onclick="changeMaxParticipants(-1)">-</button>
+    <input type="text" id="maxParticipantsInput" value="6" readonly>
+    <button onclick="changeMaxParticipants(1)">+</button>
+  </div>
+</div>
+
+
     <!-- Table Container for Viewing -->
     <div class="table-container" id="tableContainer"></div>
 
@@ -42,3 +52,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
