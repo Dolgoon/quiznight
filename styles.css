@@ -1,190 +1,149 @@
-/* General styling */
 body {
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #FFF9E3; /* Light yellow background */
-    margin: 0;
-    padding: 0;
-    color: #1E3A5F; /* Navy blue for text */
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fffbe7;
+  padding: 30px;
+  text-align: center;
+  color: #333;
 }
 
 h1 {
-    background-color: #1E3A5F; /* Navy blue */
-    color: #FFD700; /* Yellow text */
-    padding: 8px 16px;
-    border-radius: 5px;
-    margin: 20px 0;
-    font-weight: 600;
+  color: #1E3A5F;
+  margin-bottom: 20px;
 }
 
-.input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 300px;
+.red-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-/* Inline styling for login form */
-.login-inline {
-    display: flex;
-    gap: 5px;
-    align-items: center;
+.red-btn:hover {
+  background-color: #c0392b;
 }
 
-/* General Red Button Styling */
-.red-button, .small-red-button {
-    background-color: #FF0000; /* Red background */
-    color: #FFFFFF; /* White text */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    text-align: center;
+.small-btn {
+  padding: 8px 14px;
+  font-size: 0.9em;
 }
 
-.red-button {
-    padding: 10px;
-    width: 100%;
-    margin-top: 5px;
+#login-form input[type="password"] {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
 }
 
-.red-button:hover, .small-red-button:hover {
-    background-color: #1E3A5F; /* Navy blue on hover */
+.control-section {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-.small-red-button {
-    padding: 8px 12px; /* Smaller padding */
+.number-control {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-/* Spin button styling */
-.spin-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    width: 100%;
+.number-control input {
+  width: 50px;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
 
-.spin-button input[type="number"] {
-    width: 60px;
-    text-align: center;
-    padding: 8px;
-    border: 2px solid #FF0000;
-    border-radius: 5px;
-    font-size: 14px;
-    -moz-appearance: textfield;
+.number-control button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.spin-button button {
-    width: 30px;
-    height: 30px;
-    background-color: #FF0000;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    transition: background-color 0.3s;
+.number-control button:hover {
+  background-color: #c0392b;
 }
 
-.spin-button button:hover {
-    background-color: #1E3A5F;
+.person-entry {
+  margin-top: 15px;
 }
 
-/* Input and button styling */
-label {
-    font-weight: 600;
-    margin-top: 5px;
+.person-entry input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 220px;
+  margin-right: 10px;
 }
 
-input[type="text"] {
-    padding: 8px;
-    width: 100%;
-    border: 2px solid #FF0000; /* Red border */
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 14px;
+#tableContainer {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-/* Table container */
-.table-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-    max-width: 1200px;
-    justify-content: center;
-}
-
-/* Table styling */
 .table {
-    border: 2px solid #1E3A5F; /* Navy blue border */
-    background-color: #FFD700; /* Yellow background */
-    padding: 15px;
-    width: 180px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 15px;
+  width: 180px;
+  min-height: 120px;
+  position: relative;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.table.full {
+  background-color: #d3d3d3;
 }
 
 .table-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.table-header strong {
-    color: #1E3A5F; /* Navy blue for table title */
-    font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .rename-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .rename-btn img {
-    width: 16px;
-    height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
-/* Person item styling */
 .person-item {
-    background-color: #1E3A5F; /* Navy blue background for person */
-    color: #FFFFFF; /* White text */
-    padding: 5px;
-    border-radius: 5px;
-    margin: 5px 0;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #465fb1;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .remove-btn {
-    background: none;
-    border: none;
-    color: #465fb1; /* Custom color for "X" button */
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-/* Full table styling */
-.table.full {
-    background-color: #d3d3d3; /* Inactive grey color */
-    color: #6c757d; /* Darker grey text to match the inactive look */
+  background: none;
+  color: #465fb1;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
 }
