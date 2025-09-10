@@ -1,25 +1,25 @@
 let tables = [];
-const maxPeoplePerTable = 6;
-const adminPassword = "anungoo7"; // Replace with your chosen password
+let maxParticipantsPerTable = 6;
+const adminPassword = "anungoo7";
 let isLoggedIn = false;
 
 // Call this function after modifying tables data
 function updateTables() {
-    renderTables(); // Re-render the tables to update the UI
+    renderTables();
 }
 
 // Load tables data on page load
-window.onload = function() {
-    renderTables(); // Render tables from the initial empty state
+window.onload = function () {
+    renderTables();
+    setupTables(parseInt(document.getElementById('tableCount').value));
 }
 
-// Display login form
+// Login-related
 function showLoginForm() {
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('login-btn').style.display = 'none';
 }
 
-// Login function
 function login() {
     const enteredPassword = document.getElementById('password').value;
     if (enteredPassword === adminPassword) {
@@ -32,7 +32,20 @@ function login() {
     }
 }
 
-// Add and assign person function with balanced random distribution
+// Change max participants per table
+function changeMaxParticipants(delta) {
+    const input = document.getElementById('maxParticipantsInput');
+    let newValue = parseInt(input.value) + delta;
+
+    if (newValue < 1) return;
+
+    maxParticipantsPerTable = newValue;
+    input.value = newValue;
+
+    updateTables();
+}
+
+// Add a person and assign to table
 function addAndAssignPerson() {
     if (!isLoggedIn) {
         alert("Please log in to add people.");
@@ -47,27 +60,22 @@ function addAndAssignPerson() {
         return;
     }
 
-    if (totalPeople >= tables.length * maxPeoplePerTable) {
+    if (totalPeople >= tables.length * maxParticipantsPerTable) {
         alert("All tables are full. Please remove a person to add a new one.");
         return;
     }
 
-    // Shuffle the tables array to introduce randomness
     const shuffledTables = [...tables].sort(() => 0.5 - Math.random());
-
-    // Find the table with the minimum number of people
     const minPeopleCount = Math.min(...shuffledTables.map(table => table.people.length));
     const availableTables = shuffledTables.filter(table => table.people.length === minPeopleCount);
 
-    // Select the first available table from the shuffled list with the minimum count
     const selectedTable = availableTables[0];
     selectedTable.people.push(name);
 
     alert(`${name} is added to ${selectedTable.name}`);
 
-    // Clear the input and re-render the tables
     document.getElementById('personName').value = '';
-    updateTables(); // Save and render updated tables
+    updateTables();
 }
 
 function removePerson(tableIndex, personIndex) {
@@ -128,7 +136,7 @@ function renderTables() {
         const tableEl = document.createElement('div');
         tableEl.className = 'table';
 
-        if (table.people.length >= maxPeoplePerTable) {
+        if (table.people.length >= maxParticipantsPerTable) {
             tableEl.classList.add('full');
         }
 
@@ -165,15 +173,10 @@ function renderTables() {
     });
 }
 
-// Add event listener to call addAndAssignPerson when "Enter" is pressed
-document.getElementById('personName').addEventListener('keypress', function(event) {
+// Add person on Enter
+document.getElementById('personName').addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent form submission or default behavior
-        addAndAssignPerson();   // Call the add person function
+        event.preventDefault();
+        addAndAssignPerson();
     }
 });
-
-// Initialize with a default table setup
-setupTables(15);
-
-
